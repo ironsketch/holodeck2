@@ -1,0 +1,3 @@
+# holodeck2
+For sys161
+This is for understanding kernel and other shit about computers and stuff...
