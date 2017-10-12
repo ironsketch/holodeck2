@@ -80,6 +80,9 @@ int malloctest(int, char **);
 int mallocstress(int, char **);
 int nettest(int, char **);
 
+/* MB */
+void hello(void);
+
 /* Routine for running a user-level program. */
 int runprogram(char *progname);
 
