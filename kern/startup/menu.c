@@ -456,6 +456,7 @@ static const char *testmenu[] = {
 	"[bt]  Bitmap test                   ",
 	"[km1] Kernel malloc test            ",
 	"[km2] kmalloc stress test           ",
+	"[asc] ascii art options             ",
 	"[tt1] Thread test 1                 ",
 	"[tt2] Thread test 2                 ",
 	"[tt3] Thread test 3                 ",
@@ -565,6 +566,8 @@ static struct {
 	{ "bt",		bitmaptest },
 	{ "km1",	malloctest },
 	{ "km2",	mallocstress },
+	/* Michelle Added Code */
+	{ "asc", funPoint },
 #if OPT_NET
 	{ "net",	nettest },
 #endif
