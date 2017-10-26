@@ -98,10 +98,16 @@ boot(void)
 
 	kprintf("\n");
 	kprintf("OS/161 base system version %s\n", BASE_VERSION);
+	/* MB */
+	kprintf("Hi Michelle, remember to name your next cat, Mc PoopyButt \n");
 	kprintf("%s", harvard_copyright);
 	kprintf("\n");
+	
+	/* MB */
+	hello();
 
-	kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", 
+	/* MB */
+	kprintf("Michelle's \"meow\" system version %s (%s #%d)\n", 
 		GROUP_VERSION, buildconfig, buildversion);
 	kprintf("\n");
 
@@ -145,7 +151,8 @@ void
 shutdown(void)
 {
 
-	kprintf("Shutting down.\n");
+	/* MB */
+	kprintf("Shutting down, mother fucker.\n");
 	
 	vfs_clearbootfs();
 	vfs_clearcurdir();

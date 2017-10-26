@@ -80,6 +80,12 @@ int malloctest(int, char **);
 int mallocstress(int, char **);
 int nettest(int, char **);
 
+/* MB */
+void hello(void);
+int funPoint(int, char **);
+void cat(void);
+void cupcake(void);
+
 /* Routine for running a user-level program. */
 int runprogram(char *progname);
 
