@@ -38,9 +38,9 @@ void cupcake(void){
 	kprintf("\n");
 }
 int funPoint(int nargs, char **args){
+	kprintf("Program name %s\n", args[0]);
 	(void)nargs;
-	(void)args;
-	
+
 	char buf[64];
 	void(*fun_Arr[])() = {cat, cupcake};
 	int size = 2;

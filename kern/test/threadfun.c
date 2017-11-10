@@ -7,7 +7,7 @@
 #include <synch.h>
 #include <test.h>
 
-#define NTHREADS  10
+int NTHREADS = 10;
 
 static struct semaphore *tsem = NULL;
 
@@ -28,10 +28,8 @@ void
 quietthread(void *junk, unsigned long num)
 {
 	(void)junk;
-	(void)num;
-	kprintf((char)1);
-	//for (i=0; i<200000; i++);
-	//   putch(ch);
+	int ch = '0' + num;
+	putch(ch);	
 
 	V(tsem);
 }
@@ -61,8 +59,9 @@ runthreads()
 int
 threadfun(int nargs, char **args)
 {
-	(void)nargs;
-	(void)args;
+	if(nargs > 1){
+		NTHREADS = args[nargs];
+	}
 
 	init_sem();
 	kprintf("Starting thread test...\n");

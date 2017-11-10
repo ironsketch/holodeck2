@@ -1,4 +1,4 @@
-cscope 15 $HOME/os161/kern               0000338727
+cscope 15 $HOME/os161/kern               0000338753
 	@arch/mips/include/current.h
 
 30 #i‚de‡
@@ -9519,7 +9519,7 @@ _OPT_SYNCHPROBS_H_
 
 2 c⁄° 
 	gbuûdvîsi⁄
- = 12;
+ = 20;
 
 3 c⁄° 
 	gbuûdc⁄fig
@@ -51571,12 +51571,14 @@ rv
 ¨gs
 ){
 
-41 ()
-«rgs
-;
+41 
+	`k¥ötf
+("ProgømÇamê%s\n", 
+¨gs
+[0]);
 
 42 ()
-¨gs
+«rgs
 ;
 
 44 
@@ -53085,45 +53087,49 @@ num
 junk
 ;
 
-31 ()
+31 
+ch
+ = '0' + 
 num
 ;
 
 32 
-	`k¥ötf
-(()1);
+	`putch
+(
+ch
+);
 
-36 
+34 
 	`V
 (
 t£m
 );
 
-37 
+35 
 	}
 }
 
-41 
+39 
 	$ru¡hªads
 ()
 
-43 
+41 
 «me
 [16];
 
-44 
+42 
 i
 , 
 ªsu…
 ;
 
-46 
+44 
 i
 =0; i<
 NTHREADS
 ; i++) {
 
-47 
+45 
 	`¢¥ötf
 (
 «me
@@ -53131,7 +53137,7 @@ NTHREADS
 i
 );
 
-48 
+46 
 ªsu…
  = 
 	`thªad_f‹k
@@ -53145,37 +53151,37 @@ quõâhªad
 i
 );
 
-49 i‡(
+47 i‡(
 ªsu…
 ) {
 
-50 
+48 
 	`∑nic
 ("threadtest:Åhread_fork failed %s)\n",
 
-51 
+49 
 	`°ªº‹
 (
 ªsu…
 ));
 
-55 
+53 
 i
 =0; i<
 NTHREADS
 ; i++) {
 
-56 
+54 
 	`P
 (
 t£m
 );
 
-58 
+56 
 	}
 }
 
-62 
+60 
 	$thªadfun
 (
 «rgs
@@ -53183,31 +53189,27 @@ t£m
 ¨gs
 )
 
-64 ()
+62 ()
 «rgs
 ;
 
-65 ()
-¨gs
-;
+65 
+	`öô_£m
+();
+
+66 
+	`k¥ötf
+("StartingÅhreadÅest...\n");
 
 67 
-	`öô_£m
+	`ru¡hªads
 ();
 
 68 
 	`k¥ötf
-("StartingÅhreadÅest...\n");
-
-69 
-	`ru¡hªads
-();
-
-70 
-	`k¥ötf
 ("\nThreadÅest done.\n");
 
-73 
+71 
 	}
 }
 
