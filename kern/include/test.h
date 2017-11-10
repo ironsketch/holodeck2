@@ -53,6 +53,10 @@ int bitmaptest(int, char **);
 int queuetest(int, char **);
 
 /* thread tests */
+/* added by Michelle Bergin */
+int threadfun(int, char **);
+/* added by Michelle Bergin */
+
 int threadtest(int, char **);
 int threadtest2(int, char **);
 int threadtest3(int, char **);

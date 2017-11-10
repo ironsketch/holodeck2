@@ -155,7 +155,7 @@ common_prog(int nargs, char **args)
 #ifdef UW
 	/* wait until the process we have just launched - and any others that it 
 	   may fork - is finished before proceeding */
-	P(no_proc_sem);
+ 	P(no_proc_sem);
 #endif // UW
 
 	return 0;
@@ -457,6 +457,7 @@ static const char *testmenu[] = {
 	"[km1] Kernel malloc test            ",
 	"[km2] kmalloc stress test           ",
 	"[asc] ascii art options             ",
+	"[ttf] Michelle Thread Test          ",
 	"[tt1] Thread test 1                 ",
 	"[tt2] Thread test 2                 ",
 	"[tt3] Thread test 3                 ",
@@ -571,6 +572,7 @@ static struct {
 #if OPT_NET
 	{ "net",	nettest },
 #endif
+	{ "ttf", threadfun },
 	{ "tt1",	threadtest },
 	{ "tt2",	threadtest2 },
 	{ "tt3",	threadtest3 },

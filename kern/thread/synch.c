@@ -182,7 +182,7 @@ lock_destroy(struct lock *lock)
 void
 lock_acquire(struct lock *lock)
 {
-        // Write this
+       // Write this
 
         (void)lock;  // suppress warning until code gets written
 }
