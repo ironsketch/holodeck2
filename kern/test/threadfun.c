@@ -59,10 +59,15 @@ runthreads()
 int
 threadfun(int nargs, char **args)
 {
+//	if(nargs > 1){
+//		NTHREADS = (int)args[1];
+//	}
+	int ch = atoi(args[1]);
+	kprintf("Amount of arguments passed: %d\n", nargs);
+	kprintf("Number passed: %d\n", ch);
 	if(nargs > 1){
-		NTHREADS = args[nargs];
+		NTHREADS = ch;
 	}
-
 	init_sem();
 	kprintf("Starting thread test...\n");
 	runthreads();
