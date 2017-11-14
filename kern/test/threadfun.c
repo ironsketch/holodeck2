@@ -10,7 +10,7 @@
 int NTHREADS = 10;
 
 static struct semaphore *tsem = NULL;
-
+static struct lock *fuckinglock
 static
 void
 init_sem(void)
@@ -28,10 +28,12 @@ void
 quietthread(void *junk, unsigned long num)
 {
 	(void)junk;
+	//aquire lock
 	int ch = '0' + num;
 	putch(ch);	
-
+	
 	V(tsem);
+	//release lock
 }
 
 static

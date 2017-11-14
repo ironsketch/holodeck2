@@ -151,6 +151,8 @@ struct lock *
 lock_create(const char *name)
 {
         struct lock *lock;
+		  
+		  int flag;
 
         lock = kmalloc(sizeof(struct lock));
         if (lock == NULL) {
@@ -183,6 +185,8 @@ void
 lock_acquire(struct lock *lock)
 {
         // Write this
+		  KASSERT(lock != NULL);
+		  
 
         (void)lock;  // suppress warning until code gets written
 }
