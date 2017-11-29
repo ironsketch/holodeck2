@@ -152,8 +152,6 @@ lock_create(const char *name)
 {
         struct lock *lock;
 		  
-		  int flag;
-
         lock = kmalloc(sizeof(struct lock));
         if (lock == NULL) {
                 return NULL;
@@ -167,50 +165,84 @@ lock_create(const char *name)
         
         // add stuff here as needed
         
-        return lock;
+	lock->lck_wchan = wchan_create(lock->lk_name);
+	if (lock->lck_wchan == NULL) {
+	   kfree(lock->lk_name);
+	   kfree(lock);
+	   return NULL;
+	}
+
+	spinlock_init(&lock->lck_lock);
+		lock->lock_is = 1;
+	
+		return lock;
 }
 
 void
 lock_destroy(struct lock *lock)
 {
-        KASSERT(lock != NULL);
+   KASSERT(lock != NULL);
 
-        // add stuff here as needed
+	spinlock_cleanup(&lock->lck_lock);
+	wchan_destroy(lock->lck_wchan);
         
-        kfree(lock->lk_name);
-        kfree(lock);
+	kfree(lock->lk_name);     
+	kfree(lock);
 }
 
 void
 lock_acquire(struct lock *lock)
 {
-        // Write this
-		  KASSERT(lock != NULL);
-		  
+	KASSERT(lock != NULL);
+	KASSERT(!curthread->t_in_interrupt);
+	
+	spinlock_acquire(&lock->lck_lock);	
+        
+	while (lock->lock_is == 0) {
+		wchan_lock(lock->lck_wchan);
+		spinlock_release(&lock->lck_lock);
+		wchan_sleep(lock->lck_wchan);
 
-        (void)lock;  // suppress warning until code gets written
+		spinlock_acquire(&lock->lck_lock);
+	}	
+	
+		lock->holder = curthread->t_name;
+	
+		KASSERT(lock->lock_is > 0);
+		lock->lock_is--;
+		spinlock_release(&lock->lck_lock);
+	
+	
 }
 
 void
 lock_release(struct lock *lock)
 {
-        // Write this
-
-        (void)lock;  // suppress warning until code gets written
+	KASSERT(lock != NULL);
+	if(lock_do_i_hold(lock)){
+		spinlock_acquire(&lock->lck_lock);
+		lock->lock_is++;
+	
+		KASSERT(lock->lock_is > 0);
+	
+		wchan_wakeone(lock->lck_wchan);
+		spinlock_release(&lock->lck_lock);
+	}
 }
 
 bool
 lock_do_i_hold(struct lock *lock)
 {
-        // Write this
-
-        (void)lock;  // suppress warning until code gets written
-
-        return true; // dummy until code gets written
+	(void)lock;  
+	// Write this
+	if(curthread->t_name != lock->holder){
+		return false;
+	}
+	return true; // dummy until code gets written
 }
 
 ////////////////////////////////////////////////////////////
-//
+//	
 // CV
 
 

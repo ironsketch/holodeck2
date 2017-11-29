@@ -55,6 +55,8 @@ int queuetest(int, char **);
 /* thread tests */
 /* added by Michelle Bergin */
 int threadfun(int, char **);
+int unsafetc(int, char **);
+int safetc(int, char **);
 /* added by Michelle Bergin */
 
 int threadtest(int, char **);

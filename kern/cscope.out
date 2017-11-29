@@ -1,4 +1,4 @@
-cscope 15 $HOME/os161/kern               0000338802
+cscope 15 $HOME/os161/kern               0000339553
 	@arch/mips/include/current.h
 
 30 #i‚de‡
@@ -9519,7 +9519,7 @@ _OPT_SYNCHPROBS_H_
 
 2 c⁄° 
 	gbuûdvîsi⁄
- = 20;
+ = 25;
 
 3 c⁄° 
 	gbuûdc⁄fig
@@ -36049,7 +36049,23 @@ V
 	mlk_«me
 ;
 
-81 
+78 
+wch™
+ *
+	mlck_wch™
+;
+
+79 
+•ölock
+ 
+	mlck_lock
+;
+
+80 vﬁ©ûê
+	mlock_is
+;
+
+86 
 lock
  *
 lock_¸óã
@@ -36057,19 +36073,19 @@ lock_¸óã
 «me
 );
 
-82 
+87 
 lock_acquúe
 (
 lock
  *);
 
-95 
+100 
 lock_ªÀa£
 (
 lock
  *);
 
-96 
+101 
 boﬁ
  
 lock_do_i_hﬁd
@@ -36077,21 +36093,21 @@ lock_do_i_hﬁd
 lock
  *);
 
-97 
+102 
 lock_de°roy
 (
 lock
  *);
 
-114 
+119 
 	scv
  {
 
-115 *
+120 *
 	mcv_«me
 ;
 
-120 
+127 
 cv
  *
 cv_¸óã
@@ -36099,13 +36115,13 @@ cv_¸óã
 «me
 );
 
-121 
+128 
 cv_de°roy
 (
 cv
  *);
 
-136 
+143 
 cv_waô
 (
 cv
@@ -36113,7 +36129,7 @@ cv
 lock
  *lock);
 
-137 
+144 
 cv_sig«l
 (
 cv
@@ -36121,7 +36137,7 @@ cv
 lock
  *lock);
 
-138 
+145 
 cv_brﬂdˇ°
 (
 cv
@@ -53043,37 +53059,37 @@ UW
 NULL
 ;
 
-16 
+17 
 	$öô_£m
 ()
 
-18 i‡(
+19 i‡(
 t£m
 ==
 NULL
 ) {
 
-19 
+20 
 t£m
  = 
 	`£m_¸óã
 ("tsem", 0);
 
-20 i‡(
+21 i‡(
 t£m
  =
 NULL
 ) {
 
-21 
+22 
 	`∑nic
 ("threadtest: sem_create failed\n");
 
-24 
+25 
 	}
 }
 
-28 
+40 
 	$quõâhªad
 (*
 junk
@@ -53081,53 +53097,53 @@ junk
 num
 )
 
-30 ()
+42 ()
 junk
 ;
 
-31 
-ch
- = '0' + 
+46 if(
 num
-;
+ > 5){
 
-32 
-	`putch
-(
-ch
-);
+47 
+	`k¥ötf
+("Meow!!!");
 
-34 
+49 
+	`k¥ötf
+("mew...");
+
+58 
 	`V
 (
 t£m
 );
 
-35 
+60 
 	}
 }
 
-39 
+64 
 	$ru¡hªads
 ()
 
-41 
+66 
 «me
 [16];
 
-42 
+67 
 i
 , 
 ªsu…
 ;
 
-44 
+69 
 i
 =0; i<
 NTHREADS
 ; i++) {
 
-45 
+70 
 	`¢¥ötf
 (
 «me
@@ -53135,7 +53151,7 @@ NTHREADS
 i
 );
 
-46 
+71 
 ªsu…
  = 
 	`thªad_f‹k
@@ -53149,37 +53165,37 @@ quõâhªad
 i
 );
 
-47 i‡(
+72 i‡(
 ªsu…
 ) {
 
-48 
+73 
 	`∑nic
 ("threadtest:Åhread_fork failed %s)\n",
 
-49 
+74 
 	`°ªº‹
 (
 ªsu…
 ));
 
-53 
+78 
 i
 =0; i<
 NTHREADS
 ; i++) {
 
-54 
+79 
 	`P
 (
 t£m
 );
 
-56 
+81 
 	}
 }
 
-60 
+85 
 	$thªadfun
 (
 «rgs
@@ -53187,35 +53203,41 @@ t£m
 ¨gs
 )
 
-62 if(
-«rgs
- > 1){
+87 
+ch
+ = 
+	`©oi
+(
+¨gs
+[1]);
 
-63 
+88 if(
+«rgs
+ >1){
+
+89 
 NTHREADS
  = 
-¨gs
-[
-«rgs
-];
+ch
+;
 
-66 
+91 
 	`öô_£m
 ();
 
-67 
+93 
 	`k¥ötf
 ("StartingÅhreadÅest...\n");
 
-68 
+94 
 	`ru¡hªads
 ();
 
-69 
+95 
 	`k¥ötf
 ("\nThreadÅest done.\n");
 
-72 
+98 
 	}
 }
 
@@ -56241,7 +56263,7 @@ lock
 
 155 
 Êag
-;
+ = 1;
 
 157 
 lock
@@ -56287,29 +56309,25 @@ lock
 NULL
 ;
 
-170  
-lock
-;
-
 171 
-	}
-}
-
-174 
-	$lock_de°roy
-(
 lock
- *lock)
-
-176 
-	`KASSERT
-(
-lock
- !
-NULL
+->
+lck_wch™
+ = 
+	`wch™_¸óã
+÷ock->
+lk_«me
 );
 
-180 
+172 i‡(
+lock
+->
+lck_wch™
+ =
+NULL
+) {
+
+173 
 	`k‰ì
 (
 lock
@@ -56317,97 +56335,225 @@ lock
 lk_«me
 );
 
-181 
+174 
 	`k‰ì
 (
 lock
 );
 
-182 
+175  
+NULL
+;
+
+178 
+	`•ölock_öô
+(&
+lock
+->
+lck_lock
+);
+
+179 
+lock
+->
+lock_is
+ = 
+Êag
+;
+
+182  
+lock
+;
+
+183 
 	}
 }
 
-185 
+186 
+	$lock_de°roy
+(
+lock
+ *lock)
+
+188 
+	`KASSERT
+(
+lock
+ !
+NULL
+);
+
+192 
+	`•ölock_˛ónup
+(&
+lock
+->
+lck_lock
+);
+
+193 
+	`wch™_de°roy
+(
+lock
+->
+lck_wch™
+);
+
+196 
+	`k‰ì
+(
+lock
+->
+lk_«me
+);
+
+197 
+	`k‰ì
+(
+lock
+);
+
+198 
+	}
+}
+
+201 
 	$lock_acquúe
 (
 lock
  *lock)
 
-190 ()
+208 
+	`•ölock_acquúe
+(&
 lock
-;
+->
+lck_lock
+);
 
-191 
+210 
+lock
+->
+lock_is
+ == 1) {
+
+211 
+	`wch™_lock
+(
+lock
+->
+lck_wch™
+);
+
+212 
+	`•ölock_ªÀa£
+(&
+lock
+->
+lck_lock
+);
+
+213 
+	`wch™_¶ìp
+(
+lock
+->
+lck_wch™
+);
+
+215 
+	`•ölock_acquúe
+(&
+lock
+->
+lck_lock
+);
+
+218 
+lock
+->
+lock_is
+ = 0;
+
+219 
+	`•ölock_ªÀa£
+(&
+lock
+->
+lck_lock
+);
+
+221 
 	}
 }
 
-194 
+224 
 	$lock_ªÀa£
 (
 lock
  *lock)
 
-198 ()
+227 ()
 lock
 ;
 
-199 
+235 
 	}
 }
 
-201 
+237 
 boﬁ
 
 
-202 
+238 
 	$lock_do_i_hﬁd
 (
 lock
  *lock)
 
-206 ()
+242 ()
 lock
 ;
 
-208  
+244  
 åue
 ;
 
-209 
+245 
 	}
 }
 
-216 
+252 
 cv
  *
 
-217 
+253 
 	$cv_¸óã
 (c⁄° *
 «me
 )
 
-219 
+255 
 cv
  *cv;
 
-221 
+257 
 cv
  = 
 	`kmÆloc
 ((cv));
 
-222 i‡(
+258 i‡(
 cv
  =
 NULL
 ) {
 
-223  
+259  
 NULL
 ;
 
-226 
+262 
 cv
 ->
 cv_«me
@@ -56417,7 +56563,7 @@ cv_«me
 «me
 );
 
-227 i‡(
+263 i‡(
 cv
 ->
 cv_«me
@@ -56425,31 +56571,31 @@ cv_«me
 NULL
 ) {
 
-228 
+264 
 	`k‰ì
 (
 cv
 );
 
-229  
+265  
 NULL
 ;
 
-234  
+270  
 cv
 ;
 
-235 
+271 
 	}
 }
 
-238 
+274 
 	$cv_de°roy
 (
 cv
  *cv)
 
-240 
+276 
 	`KASSERT
 (
 cv
@@ -56457,7 +56603,7 @@ cv
 NULL
 );
 
-244 
+280 
 	`k‰ì
 (
 cv
@@ -56465,17 +56611,17 @@ cv
 cv_«me
 );
 
-245 
+281 
 	`k‰ì
 (
 cv
 );
 
-246 
+282 
 	}
 }
 
-249 
+285 
 	$cv_waô
 (
 cv
@@ -56483,19 +56629,19 @@ cv
 lock
  *lock)
 
-252 ()
+288 ()
 cv
 ;
 
-253 ()
+289 ()
 lock
 ;
 
-254 
+290 
 	}
 }
 
-257 
+293 
 	$cv_sig«l
 (
 cv
@@ -56503,19 +56649,19 @@ cv
 lock
  *lock)
 
-260 ()
+296 ()
 cv
 ;
 
-261 ()
+297 ()
 lock
 ;
 
-262 
+298 
 	}
 }
 
-265 
+301 
 	$cv_brﬂdˇ°
 (
 cv
@@ -56523,15 +56669,15 @@ cv
 lock
  *lock)
 
-268 ()
+304 ()
 cv
 ;
 
-269 ()
+305 ()
 lock
 ;
 
-270 
+306 
 	}
 }
 

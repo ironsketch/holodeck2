@@ -458,6 +458,8 @@ static const char *testmenu[] = {
 	"[km2] kmalloc stress test           ",
 	"[asc] ascii art options             ",
 	"[ttf] Michelle Thread Test          ",
+	"[utt] Unsafe Thread Test				 ",
+	"[stt] Lock Thread Test					 ",
 	"[tt1] Thread test 1                 ",
 	"[tt2] Thread test 2                 ",
 	"[tt3] Thread test 3                 ",
@@ -573,6 +575,8 @@ static struct {
 	{ "net",	nettest },
 #endif
 	{ "ttf", threadfun },
+	{ "utt", unsafetc },
+	{ "stt", safetc },
 	{ "tt1",	threadtest },
 	{ "tt2",	threadtest2 },
 	{ "tt3",	threadtest3 },
