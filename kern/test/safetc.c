@@ -77,5 +77,6 @@ int safetc(int nargs, char **args){
 	kprintf("Thread test done.\n");
 	kprintf("And the result is: %d\n", GLOBALVAR2);
 	kprintf("But should be: %d\n", shouldBe);
+	GLOBALVAR2 = 0;
 	return 0;
 }

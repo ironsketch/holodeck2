@@ -57,6 +57,8 @@ int queuetest(int, char **);
 int threadfun(int, char **);
 int unsafetc(int, char **);
 int safetc(int, char **);
+int spinlockstuff(int, char **);
+//struct spinlock sp_lock;
 /* added by Michelle Bergin */
 
 int threadtest(int, char **);
