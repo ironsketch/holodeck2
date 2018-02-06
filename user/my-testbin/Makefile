@@ -1,4 +1,3 @@
-
 TOP=../..
 .include "$(TOP)/mk/os161.config.mk"
 
@@ -6,5 +5,6 @@ TOP=../..
 SUBDIRS= example 
 SUBDIRS= hell
 SUBDIRS= time
+SUBDIRS= getapid
 
 .include "$(TOP)/mk/os161.subdir.mk"
