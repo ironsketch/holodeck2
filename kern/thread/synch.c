@@ -173,8 +173,8 @@ lock_create(const char *name)
 	}
 
 	spinlock_init(&lock->lck_lock);
-		lock->lock_is = 1;
-	
+		lock->held = false;
+	   lock->holder = NULL;
 		return lock;
 }
 
@@ -198,18 +198,16 @@ lock_acquire(struct lock *lock)
 	
 	spinlock_acquire(&lock->lck_lock);	
         
-	while (lock->lock_is == 0) {
+	while (lock->held) {
 		wchan_lock(lock->lck_wchan);
 		spinlock_release(&lock->lck_lock);
 		wchan_sleep(lock->lck_wchan);
 
 		spinlock_acquire(&lock->lck_lock);
 	}	
-	
-		lock->holder = curthread->t_name;
-	
-		KASSERT(lock->lock_is > 0);
-		lock->lock_is--;
+	   KASSERT(!lock->held);
+		lock->holder = curthread;
+	   lock->held = true;
 		spinlock_release(&lock->lck_lock);
 	
 	
@@ -219,15 +217,13 @@ void
 lock_release(struct lock *lock)
 {
 	KASSERT(lock != NULL);
-	if(lock_do_i_hold(lock)){
 		spinlock_acquire(&lock->lck_lock);
-		lock->lock_is++;
+		if(lock_do_i_hold(lock)){
+          lock->held = false;	
 	
-		KASSERT(lock->lock_is > 0);
-	
-		wchan_wakeone(lock->lck_wchan);
-		spinlock_release(&lock->lck_lock);
-	}
+     		wchan_wakeone(lock->lck_wchan);
+		}
+	spinlock_release(&lock->lck_lock);
 }
 
 bool
@@ -235,7 +231,7 @@ lock_do_i_hold(struct lock *lock)
 {
 	(void)lock;  
 	// Write this
-	if(curthread->t_name != lock->holder){
+	if(curthread != lock->holder){
 		return false;
 	}
 	return true; // dummy until code gets written
