@@ -47,7 +47,10 @@ void sys__exit(int exitcode) {
   /* thread_exit() does not return, so we should never get here */
   panic("return from thread_exit in sys_exit\n");
 }
-
+int sys_fork(pid_t *retval){
+	*retval = 1;
+	return (0);
+}
 
 /* stub handler for getpid() system call                */
 int

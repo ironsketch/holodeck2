@@ -10,11 +10,8 @@
 int NTHREADS = 10;
 
 static struct semaphore *tsem = NULL;
-static struct lock *fuckinglock = NULL;
 
-static
-void
-init_sem(void)
+static void init_sem(void)
 {
 	if (tsem==NULL) {
 		tsem = sem_create("tsem", 0);
@@ -26,34 +23,12 @@ init_sem(void)
 
 static
 void
-init_lock(void){
-	if(fuckinglock == NULL){
-		fuckinglock = lock_create("flock");
-		if(fuckinglock == NULL){
-			panic("locking failed\n");
-		}
-	}
-}
-
-static
-void
 quietthread(void *junk, unsigned long num)
 {
 	(void)junk;
 	//aquire lock
-	
-	lock_acquire(fuckinglock);
-	if(num > 5){
-		kprintf("Meow!!!");
-	} else {
-		kprintf("mew...");
-	}
-	
-	lock_release(fuckinglock);	
-	
-	
-	//int ch = '0' + num;
-	//putch(ch);	
+	int ch = '0' + num;
+	putch(ch);	
 	
 	V(tsem);
 	//release lock
@@ -84,12 +59,11 @@ runthreads()
 int
 threadfun(int nargs, char **args)
 {
-	int ch = atoi(args[1]);
-	if(nargs >1){
-		NTHREADS = ch;
+	if(nargs > 1){
+		NTHREADS = atoi(args[nargs]);
 	}
+
 	init_sem();
-	init_lock();
 	kprintf("Starting thread test...\n");
 	runthreads();
 	kprintf("\nThread test done.\n");
